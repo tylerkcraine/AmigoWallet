@@ -1,5 +1,6 @@
 package com.infy.AmigoWallet.model;
 
+import com.infy.AmigoWallet.validation.Role;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -12,6 +13,7 @@ public class Permission implements GrantedAuthority {
     @ManyToOne
     private WalletUser user;
 
+    @Role
     private String authority;
 
     public Permission(WalletUser user, String authority) {

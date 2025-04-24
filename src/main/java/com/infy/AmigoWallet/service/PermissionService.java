@@ -20,6 +20,9 @@ public class PermissionService {
     }
 
     public void addPermission(WalletUser user, String permission) {
+        boolean alreadyExist = permissionRepository.findPermissionByUser(user).stream().map(Permission::getAuthority).anyMatch(s -> s.equals(permission));
+        if (alreadyExist)
+            return;
         Permission newPermission = new Permission(user, permission);
         permissionRepository.save(newPermission);
     }
